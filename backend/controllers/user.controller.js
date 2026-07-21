@@ -113,6 +113,8 @@ export const updateProfile =async (req,res)=>{
     try{
         const {fullname,email,phoneNumber,bio,skills}=req.body;
         const file=req.file;
+        // console.log(fullname,email,phoneNumber,bio,skills);
+        
     // if one field is not updated among above it will raise the error
         // if(!fullname || !email || !phoneNumber || !bio || !skills){
         //     return res.status(400).json({

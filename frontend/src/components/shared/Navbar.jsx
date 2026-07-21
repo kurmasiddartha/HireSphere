@@ -38,8 +38,8 @@ const Navbar = () => {
                                             <AvatarImage src="https://github.com/shadcn.png" />
                                         </Avatar>
                                         <div>
-                                            <h4 className='font-medium'>Siddartha</h4>
-                                            <p className='text-sm text-muted-foreground'>Software Developer</p>
+                                            <h4 className='font-medium'>{user?.fullname}</h4>
+                                            <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
                                         </div>
 
                                     </div>
