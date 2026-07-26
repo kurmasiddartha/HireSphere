@@ -8,6 +8,7 @@ import {Label} from './ui/label'
 import AppliedJobTable from './AppliedJobTitle'
 import UpdateProfileDialog from './UpdateProfileDialog'
 import { useSelector } from 'react-redux'
+import useGetAppliedJobs from '../hooks/useGetAppliedJobs'
 
 // const skills=["DSA","HTML","CSS","MERN","JAVA"]
 
@@ -15,6 +16,7 @@ const isResume=true
 const Profile = () => {
   const [open,setOpen]=useState(false)
   const {user}=useSelector(store=>store.auth)
+  useGetAppliedJobs()
   return (
     <div>
         <Navbar/>
@@ -22,7 +24,7 @@ const Profile = () => {
           <div className='flex justify-between'>
             <div className='flex items-center gap-4'>
               <Avatar className='h-24 w-24'>
-                <AvatarImage src='https://shorturl.at/odRDV'></AvatarImage>
+                <AvatarImage src={user?.profile?.profilePhoto}></AvatarImage>
               </Avatar>
               <div>
                 <h1 className='font-medium text-xl'>{user?.fullname}</h1>
