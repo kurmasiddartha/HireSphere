@@ -28,7 +28,9 @@ const Profile = () => {
               </Avatar>
               <div>
                 <h1 className='font-medium text-xl'>{user?.fullname}</h1>
-                <p>{user?.profile?.bio}</p>
+                {user?.profile?.bio && user?.profile?.bio !== 'undefined' && (
+                  <p>{user?.profile?.bio}</p>
+                )}
               </div>
             </div>
             <Button onClick={()=> setOpen(true)} className='text-right' variant='outline'><Pen/></Button>

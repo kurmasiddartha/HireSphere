@@ -74,7 +74,9 @@ const Navbar = () => {
                                         </Avatar>
                                         <div>
                                             <h4 className='font-medium'>{user?.fullname}</h4>
-                                            <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
+                                            {user?.profile?.bio && user?.profile?.bio !== 'undefined' && (
+                                                <p className='text-sm text-muted-foreground'>{user?.profile?.bio}</p>
+                                            )}
                                         </div>
 
                                     </div>

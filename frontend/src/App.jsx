@@ -16,6 +16,8 @@ import AdminJobs from './components/admin/AdminJobs'
 import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
+import StudentRoute from './components/auth/StudentRoute'
+
 const appRouter= createBrowserRouter([
   {
     path:'/',
@@ -31,19 +33,19 @@ const appRouter= createBrowserRouter([
   },
   {
     path:'/jobs',
-    element:<Jobs/>
+    element:<StudentRoute><Jobs/></StudentRoute>
   },
   {
     path:'/browse',
-    element:<Browse/>
+    element:<StudentRoute><Browse/></StudentRoute>
   },
   {
     path:'/profile',
-    element:<Profile/>
+    element:<StudentRoute><Profile/></StudentRoute>
   },
   {
     path:'/description/:id',
-    element:<JobDescription/>
+    element:<StudentRoute><JobDescription/></StudentRoute>
   },
   // admin controls
   {

@@ -14,16 +14,16 @@ const UpdateProfileDialog = ({open,setOpen}) => {
     const [loading,setLoading]=useState(false)
     const {user}=useSelector(store=>store.auth)
     const [input,setInput]=useState({
-        fullname:user?.fullname,
-        email:user?.email,
-        phoneNumber:user?.phoneNumber,
-        bio:user?.profile?.bio,
-        skills:user?.profile?.skills?.map(skill=>skill),
-        file:user?.profile?.resume
+        fullname: user?.fullname || "",
+        email: user?.email || "",
+        phoneNumber: user?.phoneNumber || "",
+        bio: user?.profile?.bio && user?.profile?.bio !== 'undefined' ? user?.profile?.bio : "",
+        skills: user?.profile?.skills?.map(skill=>skill) || "",
+        file: user?.profile?.resume
     })
     const dispatch=useDispatch()
     const changeEventHandler=(e)=>{
-        setInput({...input,[e.target.name]:[e.target.value]})
+        setInput({...input,[e.target.name]: e.target.value})
     }
     const fileChangeHandler=(e)=>{
         const file=e.target.files?.[0]
@@ -33,11 +33,11 @@ const UpdateProfileDialog = ({open,setOpen}) => {
         e.preventDefault();
         // console.log(input);
         const formData=new FormData();
-        formData.append("fullname",input.fullname)
-        formData.append("email",input.email)
-        formData.append("phoneNumber",input.phoneNumber)
-        formData.append("bio",input.bio)
-        formData.append("skills",input.skills)
+        formData.append("fullname", input.fullname || "")
+        formData.append("email", input.email || "")
+        formData.append("phoneNumber", input.phoneNumber || "")
+        formData.append("bio", input.bio || "")
+        formData.append("skills", input.skills || "")
         if(input.file){
             formData.append("file",input.file)
         }
