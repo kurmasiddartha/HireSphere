@@ -11,7 +11,7 @@ export const registerCompany= async (req,res)=>{
                 success:false
             })
         }
-        let company= await Company.findOne({name:companyName});
+        let company= await Company.findOne({name:companyName,userId:req.id});
         if(company){
             return res.status(400).json({
                 message:"You can't register same company",
@@ -78,6 +78,12 @@ export const updateCompany= async (req,res)=>{
     try {
         const {name,description,website,location}=req.body
         const file=req.file
+        if(!file){
+            return res.status(400).json({
+                message:"Company logo is required",
+                success:false
+            })
+        }
         // console.log(name,description,website,location);
         const fileUri=getDataUri(file)
         const cloudResponse =await cloudinary.uploader.upload(fileUri.content)
@@ -94,8 +100,12 @@ export const updateCompany= async (req,res)=>{
             message:"Company information is updated",
             success:true
         })
-    } catch (error) {
+       } catch (error) {
         console.log(error);
-        
+        return res.status(500).json({
+            message: "Failed to upload image or update company. Please try again.",
+            success: false
+        });
     }
+
 }
